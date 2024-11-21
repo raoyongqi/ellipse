@@ -9,10 +9,10 @@ arcpy.env.overwriteOutput = True  # 允许覆盖输出文件
 arcpy.CheckOutExtension("Spatial")  # 检查并启用 Spatial Analyst 扩展
 
 # 输入文件夹路径（存放所有输入的 tiff 文件）
-input_folder = r"C:\Users\r\Desktop\cal\gansu\extract"  # 输入栅格文件路径
-output_folder = r"C:\Users\r\Desktop\cal\gansu\dot"  # 输出点数据路径
-output_fc_folder = r"C:\Users\r\Desktop\cal\gansu\el"  # 输出椭圆 Shapefile 路径
-csv_file = r"C:\Users\r\Desktop\cal\gansu\gansu_centers.csv"  # 输出的 CSV 文件路径
+input_folder = r"C:\Users\r\Desktop\cal\qinghai\extract"  # 输入栅格文件路径
+output_folder = r"C:\Users\r\Desktop\cal\qinghai\dot"  # 输出点数据路径
+output_fc_folder = r"C:\Users\r\Desktop\cal\qinghai\el"  # 输出椭圆 Shapefile 路径
+csv_file = r"C:\Users\r\Desktop\cal\qinghai\qinghai_centers.csv"  # 输出的 CSV 文件路径
 
 # 获取输入文件夹中的所有 .tif 文件
 tif_files = [f for f in os.listdir(input_folder) if f.endswith(".tif")]
@@ -85,10 +85,11 @@ for tif_file in tif_files:
     print(f"Rotation angle (radians): {theta}")
     print(f"Rotation angle (degrees): {np.degrees(theta)}")
 
-    # 创建一个新的 Feature Class 来保存椭圆    # 创建一个新的 Feature Class 来保存椭圆
+    # 创建一个新的 Feature Class 来保存椭圆
     spatial_reference = arcpy.SpatialReference(4326)
     # 创建一个新的 Feature Class 来保存椭圆
     arcpy.management.CreateFeatureclass(os.path.dirname(output_fc), os.path.basename(output_fc), "POLYGON",spatial_reference=spatial_reference)
+
     # 使用 ArcPy 创建椭圆的几何坐标
     ellipse_points = []
     num_points = 100  # 用于构造椭圆的点数，更多的点会让椭圆更平滑

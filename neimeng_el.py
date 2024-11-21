@@ -84,9 +84,9 @@ for tif_file in tif_files:
     print(f"Semi-minor axis: {semi_minor}")
     print(f"Rotation angle (radians): {theta}")
     print(f"Rotation angle (degrees): {np.degrees(theta)}")
-
+    spatial_reference = arcpy.SpatialReference(4326)
     # 创建一个新的 Feature Class 来保存椭圆
-    arcpy.management.CreateFeatureclass(os.path.dirname(output_fc), os.path.basename(output_fc), "POLYGON")
+    arcpy.management.CreateFeatureclass(os.path.dirname(output_fc), os.path.basename(output_fc), "POLYGON",spatial_reference=spatial_reference)
 
     # 使用 ArcPy 创建椭圆的几何坐标
     ellipse_points = []
@@ -102,7 +102,7 @@ for tif_file in tif_files:
     # 创建椭圆的 Polygon 对象
     ellipse_array = arcpy.Array(ellipse_points)
     ellipse_polygon = arcpy.Polygon(ellipse_array)
-
+    spatial_reference = arcpy.SpatialReference(4326)
     # 将椭圆插入到 Feature Class 中
     with arcpy.da.InsertCursor(output_fc, ["SHAPE@"]) as cursor:
         cursor.insertRow([ellipse_polygon])
