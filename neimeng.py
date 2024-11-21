@@ -7,8 +7,8 @@ arcpy.env.overwriteOutput = True  # 允许覆盖输出文件
 arcpy.CheckOutExtension("Spatial")  # 检查并启用 Spatial Analyst 扩展
 
 # 输入文件夹路径（存放所有输入的 tiff 文件）
-input_folder = r"C:\Users\r\Desktop\cal\gansu\gansu_Ci"  # 输入文件夹路径
-output_folder = r"C:\Users\r\Desktop\cal\gansu\extract"  # 输出文件夹路径
+input_folder = r"C:\Users\r\Desktop\cal\neimeng\neimeng_Ci"  # 输入文件夹路径
+output_folder = r"C:\Users\r\Desktop\cal\neimeng\extract"  # 输出文件夹路径
 
 # 获取输入文件夹中的所有 .tif 文件
 tif_files = [f for f in os.listdir(input_folder) if f.endswith(".tif")]
